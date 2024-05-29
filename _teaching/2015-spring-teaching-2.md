@@ -2,7 +2,7 @@
 title: "Lecture on Action Recognition"
 collection: teaching
 type: "Master course"
-permalink: https://www-sop.inria.fr/members/Francois.Bremond/MSclass/deepLearningWinterSchool23/UCA_master/slides_win20/Lecture_Abid_8thFeb.pdf
+# permalink: https://www-sop.inria.fr/members/Francois.Bremond/MSclass/deepLearningWinterSchool23/UCA_master/slides_win20/Lecture_Abid_8thFeb.pdf
 venue: "Côte d'Azur University, Computer Science"
 date: 01-03-2023
 location: "Sophia Antipolis, France"
