@@ -2,8 +2,8 @@
 title: "Deep Learning Specialization"
 collection: certificates
 type: "Specializaiton"
-venue: "[couera.com](https://www.coursera.org/)"
-date: 08-02-2023
+venue: "Coursera.com"
+date: 08-02-2019
 # location: "Sophia Antipolis, France"
 ---
 Intro to Computer Vision

@@ -2,8 +2,8 @@
 title: "Computer Vision NanoDegree"
 collection: certificates
 type: "Nano Degree"
-venue: "[Udacity.com](https://www.udacity.com/)"
-date: 08-11-2019
+venue: "Udacity.com"
+date: 08-11-2023
 # location: "Sophia Antipolis, France"
 ---
 Overview of the whole specializaiton:
