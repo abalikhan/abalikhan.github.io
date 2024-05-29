@@ -4,11 +4,11 @@ main:
     url: /publications/
   - title: "Teaching"
     url: /teaching/  
-  - title: "Certifications"
-    url: /certificates/  
+  # - title: "Certifications"
+  #   url: /certificates/  
     
-  # - title: "Talks"
-  #   url: /talks/    
+  - title: "Courses"
+    url: /talks/    
 
   # - title: "Courses"
   #   url: /portfolio/
