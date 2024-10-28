@@ -18,6 +18,7 @@ In my spare time I enjoy hiking, travelling, and swimming.
 <br/>
 **News.**
 
+* __10.2024__ My paper titled "Loose Social-Interaction Recognition in Real-world Therapy Scenarios" has been accepted in WACV 2025.
 * __09.2024__ My paper titled "Weakly-supervised Autism Severity Assessment in Long Videos" has been accepted in CBMI 2024.
 * __09.2023__ I was invited at [Idiap](https://www.idiap.ch/en/) to present my work on Autistic behavior understanding. [slides].
 * __08.2023__ I visited [Perception and Activity Understanding group at Idiap](https://www.idiap.ch/~odobez/) for 3 months to collaborate on Autism diagnosis. 
