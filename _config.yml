@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Abid Ali"
 title_separator          : "-"
 name                     : &name "Abid Ali"
-description              : &description "Early Stage Researcher (PhD) at INRIA, Sophia Antipolis, France"
+description              : &description "Early Stage Researcher (PhD.) at INRIA, Sophia Antipolis, France"
 url                      : https://abalikhan.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/abalikhan/abalikhan.github.io"
@@ -24,7 +24,7 @@ author:
   avatar           : "profile.jpg"
   name             : "Abid Ali"
   pronouns         : # example: "she/her"  
-  bio              : "PhD at INRIA and University Cote D'Azur"
+  bio              : "Computer Vision/ ML Researcher (PhD.)"
   location         : "France"
   employer         :
   uri              : # URL
