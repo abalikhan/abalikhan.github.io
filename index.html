@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abid Ali — Applied AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0c0f14;
+    --ink-2: #3a4155;
+    --ink-3: #6b7486;
+    --ink-4: #9ba3b2;
+    --surface: #ffffff;
+    --surface-2: #f7f8fa;
+    --surface-3: #eef0f4;
+    --border: #e3e6ec;
+    --border-2: #cdd1db;
+    --accent: #0e7aff;
+    --accent-2: #0062d6;
+    --accent-bg: #eef5ff;
+    --accent-mid: #b8d4ff;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-mid: #86efac;
+    --amber: #b45309;
+    --amber-bg: #fffbeb;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --nav-h: 64px;
+    --max: 1080px;
+    --r: 10px;
+    --r-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    height: var(--nav-h);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 15px; font-weight: 600; color: var(--ink);
+    letter-spacing: -.01em; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 13.5px; color: var(--ink-3); text-decoration: none;
+    transition: color .15s; font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500;
+    background: var(--accent); color: #fff;
+    padding: 8px 18px; border-radius: 8px; text-decoration: none;
+    transition: background .15s, transform .1s;
+    display: inline-block;
+  }
+  .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); }
+
+  /* ── SECTIONS ── */
+  section { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+  .divider { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+  .divider hr { border: none; border-top: 1px solid var(--border); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 72px; padding-bottom: 72px;
+    display: grid; grid-template-columns: 1fr 280px; gap: 48px; align-items: start;
+  }
+  .hero-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-bg); border: 1px solid var(--green-mid);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 500; color: var(--green);
+    letter-spacing: .04em;
+  }
+  .hero h1 {
+    font-size: 44px; font-weight: 600; letter-spacing: -.03em;
+    color: var(--ink); line-height: 1.1; margin-bottom: 10px;
+  }
+  .hero h1 em { font-style: normal; color: var(--ink-3); font-weight: 300; }
+  .hero-sub {
+    font-size: 16px; color: var(--ink-2); line-height: 1.75;
+    margin-bottom: 28px; max-width: 540px;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 36px; }
+  .btn-primary {
+    font-size: 14px; font-weight: 500;
+    background: var(--accent); color: #fff;
+    padding: 11px 24px; border-radius: var(--r); text-decoration: none;
+    transition: background .15s, transform .12s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+  .btn-secondary {
+    font-size: 14px; font-weight: 400; color: var(--ink-2);
+    border: 1px solid var(--border-2); padding: 10px 20px;
+    border-radius: var(--r); text-decoration: none;
+    transition: border-color .15s, color .15s; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--ink-3); color: var(--ink); }
+  .hero-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+  .meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-3); }
+  .meta-item svg { flex-shrink: 0; }
+
+  .hero-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 24px;
+    position: sticky; top: calc(var(--nav-h) + 20px);
+  }
+  .avatar {
+    width: 72px; height: 72px; border-radius: 14px;
+    background: var(--accent-bg); border: 1px solid var(--accent-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 600; color: var(--accent);
+    margin-bottom: 16px; font-family: var(--mono);
+  }
+  .card-name { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .card-role { font-size: 13px; color: var(--ink-3); margin-bottom: 16px; line-height: 1.4; }
+  .card-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  .card-links { display: flex; flex-direction: column; gap: 8px; }
+  .card-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--ink-2); text-decoration: none;
+    padding: 7px 10px; border-radius: 8px; transition: background .12s, color .12s;
+  }
+  .card-link:hover { background: var(--surface-3); color: var(--ink); }
+  .card-link svg { flex-shrink: 0; color: var(--ink-4); }
+
+  /* ── STATS ── */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    padding: 56px 0;
+  }
+  .stat-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 20px 22px;
+    transition: border-color .15s, transform .15s;
+  }
+  .stat-card:hover { border-color: var(--accent-mid); transform: translateY(-2px); }
+  .stat-num {
+    font-size: 30px; font-weight: 600; color: var(--ink);
+    letter-spacing: -.03em; line-height: 1; margin-bottom: 6px;
+    font-family: var(--mono);
+  }
+  .stat-label { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+  .stat-accent { color: var(--accent); }
+
+  /* ── SECTION HEADERS ── */
+  .sec-head {
+    display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px;
+  }
+  .sec-title { font-size: 11px; font-weight: 600; color: var(--ink-4); letter-spacing: .1em; text-transform: uppercase; }
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── STACK SECTION ── */
+  .stack-section { padding: 56px 0; }
+  .stack-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .stack-group {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 20px;
+  }
+  .stack-group-title { font-size: 12px; font-weight: 600; color: var(--ink-3); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill {
+    display: inline-block; font-size: 12px; font-weight: 400;
+    padding: 4px 12px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--ink-2); font-family: var(--mono);
+    transition: border-color .12s, color .12s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill-accent { background: var(--accent-bg); border-color: var(--accent-mid); color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  .projects-section { padding: 56px 0; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    transition: border-color .15s, transform .15s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: var(--accent-mid); transform: translateY(-3px); }
+  .project-header {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .project-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 18px;
+  }
+  .project-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .project-venue { font-size: 12px; color: var(--ink-4); font-family: var(--mono); }
+  .project-body { padding: 18px 22px; flex: 1; }
+  .project-desc { font-size: 13.5px; color: var(--ink-2); line-height: 1.65; margin-bottom: 14px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project-footer {
+    padding: 12px 22px; border-top: 1px solid var(--border);
+    display: flex; gap: 12px;
+  }
+  .project-link {
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    text-decoration: none; transition: opacity .12s;
+  }
+  .project-link:hover { opacity: .7; }
+  .project-link-muted { color: var(--ink-3); }
+
+  /* ── EXPERIENCE ── */
+  .experience-section { padding: 56px 0; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 0; position: relative;
+  }
+  .timeline-left {
+    padding: 24px 28px 24px 0; text-align: right;
+    border-right: 1px solid var(--border);
+  }
+  .tl-date { font-size: 12px; font-family: var(--mono); color: var(--ink-4); margin-bottom: 4px; }
+  .tl-place { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+  .timeline-dot {
+    position: absolute; left: 180px; top: 28px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--border-2);
+    transform: translateX(-50%); z-index: 1;
+    transition: border-color .15s;
+  }
+  .timeline-item:first-child .timeline-dot { border-color: var(--accent); background: var(--accent); }
+  .timeline-right { padding: 24px 0 24px 32px; }
+  .tl-role { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .tl-org { font-size: 13px; color: var(--accent); margin-bottom: 10px; }
+  .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .tl-bullets li {
+    font-size: 13.5px; color: var(--ink-2); line-height: 1.6;
+    padding-left: 16px; position: relative;
+  }
+  .tl-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 5px; height: 1px; background: var(--ink-4);
+  }
+  .tl-award {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--amber-bg); border: 1px solid #fde68a;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 500; color: var(--amber); margin-top: 10px;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pubs-section { padding: 56px 0; }
+  .pub-list { display: flex; flex-direction: column; gap: 2px; }
+  .pub-item {
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start;
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-badge {
+    font-size: 10px; font-weight: 600; font-family: var(--mono);
+    padding: 4px 8px; border-radius: 6px; text-align: center;
+    line-height: 1.3; letter-spacing: .02em;
+  }
+  .pub-badge-top { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-mid); }
+  .pub-badge-eq { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-mid); }
+  .pub-badge-pre { background: var(--surface-3); color: var(--ink-3); border: 1px solid var(--border); }
+  .pub-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
+  .pub-authors { font-size: 12.5px; color: var(--ink-3); margin-bottom: 3px; }
+  .pub-venue { font-size: 12px; font-family: var(--mono); color: var(--ink-4); }
+  .pub-me { color: var(--accent); font-weight: 500; }
+
+  /* ── EDUCATION ── */
+  .edu-section { padding: 56px 0; }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .edu-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 22px;
+  }
+  .edu-degree { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .edu-school { font-size: 13px; color: var(--accent); margin-bottom: 2px; }
+  .edu-year { font-size: 12px; font-family: var(--mono); color: var(--ink-4); margin-bottom: 12px; }
+  .edu-thesis { font-size: 12px; color: var(--ink-3); font-style: italic; line-height: 1.5; }
+
+  /* ── AWARDS ── */
+  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+  .award-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: var(--r);
+  }
+  .award-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .award-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+  .award-year { font-size: 12px; color: var(--ink-4); font-family: var(--mono); }
+
+  /* ── CONTACT ── */
+  .contact-section { padding: 72px 0 88px; }
+  .contact-box {
+    background: var(--ink); border-radius: var(--r-lg);
+    padding: 48px 52px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .contact-box h2 { font-size: 30px; font-weight: 600; color: #fff; letter-spacing: -.02em; margin-bottom: 10px; }
+  .contact-box p { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    padding: 13px 16px; border-radius: var(--r); text-decoration: none;
+    color: #e2e8f0; font-size: 13.5px; transition: background .15s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.12); }
+  .contact-link svg { color: #64748b; flex-shrink: 0; }
+  .contact-link-label { font-size: 11px; color: #64748b; font-family: var(--mono); display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 32px;
+    display: flex; justify-content: center; align-items: center;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .footer-inner { font-size: 12.5px; color: var(--ink-4); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stack-groups { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-box { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .timeline-item { grid-template-columns: 110px 1fr; }
+    .timeline-left { padding-right: 16px; }
+    .timeline-right { padding-left: 22px; }
+  }
+  @media (max-width: 600px) {
+    section, .divider { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; }
+    .hero { padding-top: 48px; padding-bottom: 48px; }
+    .hero h1 { font-size: 32px; }
+    .contact-box { padding: 32px 24px; }
+    .pub-item { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-left { display: none; }
+    .timeline-dot { display: none; }
+    .timeline-right { padding: 0 0 24px 0; border-left: 2px solid var(--border); padding-left: 20px; margin-bottom: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">abidali<span>.ai</span></a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Papers</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:aali.abidkhan@gmail.com" class="nav-cta">Hire me →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div>
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        <span class="hero-eyebrow">Open to senior ML / CV roles · Luxembourg & Remote</span>
+      </div>
+      <h1>Applied AI Engineer<br><em>with a PhD in computer vision</em></h1>
+      <p class="hero-sub">
+        I turn research into real products — deepfake detectors, spacecraft trackers, behavior analyzers.
+        <strong>6 years at INRIA and the University of Luxembourg.</strong>
+        Marie Curie Fellow. Now bringing that depth to industry.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View my work →</a>
+        <a href="https://scholar.google.com/citations?user=iehHhVQAAAAJ&hl=en" target="_blank" class="btn-secondary">Google Scholar</a>
+        <a href="https://github.com/abalikhan" target="_blank" class="btn-secondary">GitHub</a>
+      </div>
+      <div class="hero-meta">
+        <span class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Thionville, France (near Luxembourg)
+        </span>
+        <span class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.63 5C1.6 3.9 2.4 2.97 3.5 2.93h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.83-.83a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+          +33 751 890 606
+        </span>
+        <span class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          aali.abidkhan@gmail.com
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="avatar">AA</div>
+      <div class="card-name">Abid Ali</div>
+      <div class="card-role">Research Associate · CVI² Lab<br>SnT, University of Luxembourg</div>
+      <hr class="card-divider">
+      <div class="card-links">
+        <a href="https://scholar.google.com/citations?user=iehHhVQAAAAJ&hl=en" target="_blank" class="card-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+          Google Scholar
+        </a>
+        <a href="https://linkedin.com/in/abid-ali-9404" target="_blank" class="card-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/abalikhan" target="_blank" class="card-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.uni.lu/snt-en/people/abid-ali/" target="_blank" class="card-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          University profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- STATS -->
+<section>
+  <div class="stats-grid fade-up">
+    <div class="stat-card">
+      <div class="stat-num">6<span class="stat-accent">+</span></div>
+      <div class="stat-label">peer-reviewed papers<br>incl. WACV, ICCV, AVSS</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5<span class="stat-accent">+</span></div>
+      <div class="stat-label">years building deep<br>learning systems</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3<span class="stat-accent">×</span></div>
+      <div class="stat-label">keypoint improvement on<br>pose estimation (TALON)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="stat-accent">EU</span></div>
+      <div class="stat-label">Marie Curie Fellow<br>+ 2× hackathon winner</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- TECH STACK -->
+<section>
+  <div class="stack-section fade-up">
+    <div class="sec-head">
+      <span class="sec-title">Tech stack</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <div class="stack-group-title">Deep Learning &amp; CV</div>
+        <div class="stack-pills">
+          <span class="pill pill-accent">PyTorch</span>
+          <span class="pill pill-accent">TensorFlow</span>
+          <span class="pill">Vision Transformers</span>
+          <span class="pill">CNNs</span>
+          <span class="pill">PEFT / Adapters</span>
+          <span class="pill">OpenCV</span>
+          <span class="pill">SAM</span>
+          <span class="pill">DINO</span>
+          <span class="pill">Qwen VLM</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">Video &amp; Perception</div>
+        <div class="stack-pills">
+          <span class="pill">Action Detection</span>
+          <span class="pill">Behavior Analysis</span>
+          <span class="pill">ByteTrack</span>
+          <span class="pill">DeepSORT</span>
+          <span class="pill">Optical Flow</span>
+          <span class="pill">Temporal Modelling</span>
+          <span class="pill">6-DoF Pose Est.</span>
+          <span class="pill">Anomaly Detection</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">Engineering &amp; Infra</div>
+        <div class="stack-pills">
+          <span class="pill">Linux</span>
+          <span class="pill">Git</span>
+          <span class="pill">SLURM</span>
+          <span class="pill">Multi-GPU (DDP)</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Python</span>
+          <span class="pill">Dataset Curation</span>
+          <span class="pill">Benchmarking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-section fade-up">
+    <div class="sec-head">
+      <span class="sec-title">Featured projects</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">TALON — Spacecraft Pose Estimation</div>
+            <div class="project-venue">Preparing · BMVC 2026</div>
+          </div>
+          <div class="project-icon" style="background:#eef5ff;">🛰️</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Token-aligned lightweight adapters injected into vision foundation models for 6-DoF spacecraft pose estimation. Achieves <strong>3.3× improvement</strong> in keypoint localization using less than 5% additional parameters. Delivered 31% reduction in pose error on SPADES and 2.5× lower error on SPARK.</p>
+          <div class="project-tags">
+            <span class="pill">PyTorch</span>
+            <span class="pill">ViT</span>
+            <span class="pill">PEFT</span>
+            <span class="pill">6-DoF</span>
+            <span class="pill">PnP</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link project-link-muted">Preprint coming soon</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">AdaTAD++ — Action Detection at Scale</div>
+            <div class="project-venue">ICCV 2025 · IEEE/CVF</div>
+          </div>
+          <div class="project-icon" style="background:#f0fdf4;">🎬</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Scaling temporal action detection with transformer-enhanced spatial-temporal adaptation. Co-first-author work introducing a new adaptation paradigm for long untrimmed video understanding on large-scale benchmarks.</p>
+          <div class="project-tags">
+            <span class="pill">Video Understanding</span>
+            <span class="pill">Transformers</span>
+            <span class="pill">Temporal Adapters</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link project-link-muted">ICCV 2025</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Autism Behavior Analysis in Video</div>
+            <div class="project-venue">WACV 2025 · IEEE/CVF</div>
+          </div>
+          <div class="project-icon" style="background:#fff7ed;">🧠</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">End-to-end system for recognizing social interactions and severity estimation in real-world therapy sessions. Combines weakly-supervised learning with large-scale video pipelines using YOLO, DeepSORT, and SAM to handle occlusions and noisy clinical environments.</p>
+          <div class="project-tags">
+            <span class="pill">Weak Supervision</span>
+            <span class="pill">YOLO</span>
+            <span class="pill">DeepSORT</span>
+            <span class="pill">SAM</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link project-link-muted">WACV 2025 · CBMI 2024</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">3D Gaze Estimation from Face Images</div>
+            <div class="project-venue">MS Thesis · Sejong University</div>
+          </div>
+          <div class="project-icon" style="background:#fdf4ff;">👁️</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Dual-channel CNN for unconstrained 3D gaze estimation from natural face images with real-time webcam tracking. Designed for low-cost accessible setups — no specialized eye-tracking hardware required.</p>
+          <div class="project-tags">
+            <span class="pill">CNN</span>
+            <span class="pill">Gaze Estimation</span>
+            <span class="pill">Object Detection</span>
+            <span class="pill">Real-time</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link project-link-muted">Sejong University 2020</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="experience-section fade-up">
+    <div class="sec-head">
+      <span class="sec-title">Experience</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="tl-date">Aug 2025 – Present</div>
+          <div class="tl-place">Luxembourg</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="tl-role">Postdoctoral Researcher</div>
+          <div class="tl-org">CVI² Lab, SnT — University of Luxembourg</div>
+          <ul class="tl-bullets">
+            <li>Designing spatiotemporal adapters for vision foundation models achieving 3.3× keypoint improvement with &lt;5% added parameters.</li>
+            <li>Built perception pipelines coupling foundation models with PnP solvers for real-time deployment; bridged research into maintainable, production-ready codebases.</li>
+            <li>31% pose score reduction on SPADES · 2.5× lower error on SPARK benchmark.</li>
+            <li>Collaborating with INRIA on robust VLMs for anomalous behavior analysis.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="tl-date">Nov 2020 – Jul 2025</div>
+          <div class="tl-place">Sophia Antipolis, France</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="tl-role">Computer Vision Researcher (PhD)</div>
+          <div class="tl-org">STARS Team — INRIA France · Marie Curie Fellow</div>
+          <ul class="tl-bullets">
+            <li>Designed parameter-efficient temporal adapters extending image-based ViTs to long video understanding with minimal parameters.</li>
+            <li>Built end-to-end action detection systems for long, untrimmed real-world video streams.</li>
+            <li>Engineered large-scale preprocessing pipelines: YOLO, Faster R-CNN, DeepSORT, ByteTrack, SAM.</li>
+            <li>Curated and benchmarked real-world video datasets for autism behavior analysis.</li>
+          </ul>
+          <div class="tl-award">🏆 Marie Curie Co-Funded Fellowship · 2020–2024</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="tl-date">Aug – Dec 2023</div>
+          <div class="tl-place">Martigny, Switzerland</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="tl-role">Research Visit</div>
+          <div class="tl-org">Idiap Research Institute</div>
+          <ul class="tl-bullets">
+            <li>Developed a weakly supervised video learning framework for autism severity estimation, reducing dependence on dense temporal annotations in long videos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="tl-date">Feb 2018 – May 2020</div>
+          <div class="tl-place">Seoul, South Korea</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="tl-role">Research Assistant</div>
+          <div class="tl-org">HCI Lab — Sejong University</div>
+          <ul class="tl-bullets">
+            <li>Developed multi-stream CNN for 3D gaze estimation from unconstrained face images.</li>
+            <li>Built real-time webcam eye-tracking system using object detection for low-cost setups.</li>
+          </ul>
+          <div class="tl-award">🎓 Professor Scholarship · 2018–2020</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="pubs-section fade-up">
+    <div class="sec-head">
+      <span class="sec-title">Selected publications</span>
+      <span class="sec-line"></span>
+      <a href="https://scholar.google.com/citations?user=iehHhVQAAAAJ&hl=en" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;white-space:nowrap;font-weight:500">Full list on Scholar →</a>
+    </div>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-badge pub-badge-pre">In prep</div>
+        <div>
+          <div class="pub-title">TALON: Token-Aligned Lightweight Adapters for 6-DoF Spacecraft Pose Estimation</div>
+          <div class="pub-authors"><span class="pub-me">Ali, A.</span>, Rathinam A., Aouada D.</div>
+          <div class="pub-venue">Preparing to submit · BMVC 2026</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-badge pub-badge-eq">Co-1st</div>
+        <div>
+          <div class="pub-title">Scaling Action Detection: AdaTAD++ with Transformer-Enhanced Temporal-Spatial Adaptation</div>
+          <div class="pub-authors">Agrawal T., <span class="pub-me">Ali A.</span> (equal contribution), et al.</div>
+          <div class="pub-venue">ICCV 2025 · IEEE/CVF International Conference on Computer Vision</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-badge pub-badge-eq">Co-1st</div>
+        <div>
+          <div class="pub-title">Are Attention Maps Richer than we Imagined for Action Recognition?</div>
+          <div class="pub-authors">Agrawal T., <span class="pub-me">Ali A.</span> (equal contribution), et al.</div>
+          <div class="pub-venue">AVSS 2025 · IEEE Advanced Video and Signal-based Surveillance</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-badge pub-badge-top">WACV</div>
+        <div>
+          <div class="pub-title">Loose Social-Interaction Recognition in Real-World Therapy Scenarios</div>
+          <div class="pub-authors"><span class="pub-me">Ali, A.</span>, et al.</div>
+          <div class="pub-venue">WACV 2025 · IEEE/CVF Winter Conference on Applications of Computer Vision</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-badge pub-badge-top">WACV</div>
+        <div>
+          <div class="pub-title">P-Age: Pexels Dataset for Robust Spatio-Temporal Apparent Age Classification</div>
+          <div class="pub-authors"><span class="pub-me">Ali, A.</span>, et al.</div>
+          <div class="pub-venue">WACV 2025 · IEEE/CVF Winter Conference on Applications of Computer Vision</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EDUCATION & AWARDS -->
+<section>
+  <div class="edu-section fade-up">
+    <div class="sec-head">
+      <span class="sec-title">Education</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">PhD · Digital Signal &amp; Image Processing</div>
+        <div class="edu-school">Université Côte d'Azur · INRIA</div>
+        <div class="edu-year">2024 · Valbonne, France</div>
+        <div class="edu-thesis">"Video Analysis using Deep Neural Networks: An Application for Autism" — Advisor: Dr. François Brémond</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">MS · Computer Engineering</div>
+        <div class="edu-school">Sejong University</div>
+        <div class="edu-year">2020 · Seoul, South Korea</div>
+        <div class="edu-thesis">"3D Gaze Estimation from Natural Face Images using a Dual Channel CNN Network" — Advisor: Prof. Yong-Guk Kim</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">BS · Electrical Engineering</div>
+        <div class="edu-school">COMSATS University Islamabad</div>
+        <div class="edu-year">2012 · Pakistan</div>
+        <div class="edu-thesis" style="color:var(--ink-4)">Foundation in signals, circuits, and systems</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <div class="sec-head">
+        <span class="sec-title">Awards &amp; certifications</span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="awards-grid">
+        <div class="award-item">
+          <div class="award-icon">🥇</div>
+          <div>
+            <div class="award-name">1st place — 3IA Hackathon (Caranx Medical)</div>
+            <div class="award-year">2023</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥉</div>
+          <div>
+            <div class="award-name">3rd place — Varuna AI Hackathon</div>
+            <div class="award-year">2022</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🇪🇺</div>
+          <div>
+            <div class="award-name">Marie Curie Co-Funded Fellowship (PhD)</div>
+            <div class="award-year">2020–2024 · EU Horizon</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">📜</div>
+          <div>
+            <div class="award-name">Computer Vision Nanodegree · Udacity &amp; Deep Learning Specialization · Coursera</div>
+            <div class="award-year">Industry certifications</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-section fade-up">
+    <div class="contact-box">
+      <div>
+        <h2>Let's build something together.</h2>
+        <p>I'm looking for senior ML / computer vision engineering roles where I can apply my research depth to real-world products. Open to remote, hybrid, and relocation in Europe.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:aali.abidkhan@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div>
+            <span class="contact-link-label">email</span>
+            aali.abidkhan@gmail.com
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/abid-ali-9404" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <div>
+            <span class="contact-link-label">linkedin</span>
+            linkedin.com/in/abid-ali-9404
+          </div>
+        </a>
+        <a href="https://github.com/abalikhan" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          <div>
+            <span class="contact-link-label">github</span>
+            github.com/abalikhan
+          </div>
+        </a>
+        <a href="https://scholar.google.com/citations?user=iehHhVQAAAAJ&hl=en" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+          <div>
+            <span class="contact-link-label">google scholar</span>
+            Full publication list
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">© 2025 Abid Ali · Built for GitHub Pages</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
